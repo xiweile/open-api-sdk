@@ -21,9 +21,9 @@ public class ApiRequestHead implements Serializable{
 	private String requestId;
 
 	/**
-	 * tokenID
+	 * 会话Id sessionId
 	 */
-	private String tokenId;
+	private String sessionId;
 
 	/**
 	 * 调用方APPID

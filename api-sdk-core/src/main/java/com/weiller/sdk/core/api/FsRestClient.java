@@ -41,7 +41,7 @@ public class FsRestClient {
     String appId;
     private String appDesKey;
     private String appSignKey;
-    private String tokenId;
+    private String sessionId;
     private String username;
     private String password;
     private String contentType;
@@ -53,25 +53,25 @@ public class FsRestClient {
         this(appId, (String)null, (String)null, (String)null);
     }
 
-    public FsRestClient(String appId, String tokenId) {
-        this(appId, tokenId, (String)null, (String)null);
+    public FsRestClient(String appId, String sessionId) {
+        this(appId, sessionId, (String)null, (String)null);
     }
 
-    public FsRestClient(String appId, String tokenId, String appSignKey) {
-        this(appId, tokenId, null, appSignKey);
+    public FsRestClient(String appId, String sessionId, String appSignKey) {
+        this(appId, sessionId, null, appSignKey);
     }
  /*   public FsRestClient(String appId, String appDesKey, String appSignKey) {
         this(appId, (String)null, appDesKey, appSignKey);
     }*/
 
-    public FsRestClient(String appId, String tokenId, String appDesKey, String appSignKey) {
+    public FsRestClient(String appId, String sessionId, String appDesKey, String appSignKey) {
         this.contentType = "application/json;charset=UTF-8";
         this.appId = appId;
         this.appDesKey = appDesKey;
         this.appSignKey = appSignKey;
-        this.tokenId = tokenId;
-        if (this.tokenId == null) {
-            this.tokenId = IDUtil.getUUID();
+        this.sessionId = sessionId;
+        if (this.sessionId == null) {
+            this.sessionId = IDUtil.getUUID();
         }
 
     }
@@ -109,7 +109,7 @@ public class FsRestClient {
             url = url + "&";
         }
 
-        //url = url + String.format("appId=%s&sessionId=%s&requestId=%s&timestamp=%s", this.appId, this.tokenId, requestId, String.valueOf(timestamp));
+        //url = url + String.format("appId=%s&sessionId=%s&requestId=%s&timestamp=%s", this.appId, this.sessionId, requestId, String.valueOf(timestamp));
         if (data == null) {
             data = "";
         }else{
@@ -118,7 +118,7 @@ public class FsRestClient {
         }
         ApiRequestHead head = new ApiRequestHead();
         head.setAppId(this.appId);
-        head.setTokenId(this.tokenId);
+        head.setSessionId(this.sessionId);
         head.setNonce(IDUtil.getUUID());
         head.setTimestamp( timestamp );
         head.setRequestId(IDUtil.getUUID());
@@ -242,7 +242,7 @@ public class FsRestClient {
 
 
     private String createSign(String requestId,String data,Long timestamp){
-        String messageText = MessageFormat.format("{0}{1}{2},{3},{4},{5},{6}{7}", data, "{", this.appId, this.appSignKey, this.tokenId, requestId, String.valueOf(timestamp), "}");
+        String messageText = MessageFormat.format("{0}{1}{2},{3},{4},{5},{6}{7}", data, "{", this.appId, this.appSignKey, this.sessionId, requestId, String.valueOf(timestamp), "}");
         MessageDigestPasswordEncoder mde = new MessageDigestPasswordEncoder("SHA-256", true);
         String signedText = (new Md5PasswordEncoder()).encodePassword(mde.encodePassword(messageText, timestamp), (Object)null).toUpperCase();
 
