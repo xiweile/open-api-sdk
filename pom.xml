@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.weiller</groupId>
+    <artifactId>open-api-sdk</artifactId>
+    <version>1.0.0</version>
+    <packaging>pom</packaging>
+
+    <name>${project.artifactId}</name>
+    <description>开放接口平台-SDK开发及调用案例</description>
+    <url>http://www.weiller.cn/</url>
+
+    <modules>
+        <module>utils</module>
+        <module>api-sdk-core</module>
+        <module>api-server</module>
+        <module>api-client</module>
+    </modules>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
+        <maven.compiler.source>1.7</maven.compiler.source>
+        <maven.compiler.target>1.7</maven.compiler.target>
+        <maven.test.skip>true</maven.test.skip>
+        <javax.servlet-api.version>3.1.0</javax.servlet-api.version>
+
+        <slf4j-api.version>1.7.25</slf4j-api.version>
+        <logback.version>1.2.3</logback.version>
+        <spring-boot.version>2.1.9.RELEASE</spring-boot.version>
+        <spring.version>4.3.21.RELEASE</spring.version>
+        <fastjson.version>1.2.47</fastjson.version>
+        <lombok.version>1.16.20</lombok.version>
+        <bcprov-jdk15on.version>1.58</bcprov-jdk15on.version>
+        <spring-security-core.version>4.2.3.RELEASE</spring-security-core.version>
+        <hibernate-validator.version>5.4.1.Final</hibernate-validator.version>
+
+        <druid.version>1.1.10</druid.version>
+        <mysql-connector-java.version>5.1.47</mysql-connector-java.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+        </dependencies>
+    </dependencyManagement>
+
+    <developers>
+        <developer>
+            <id>weiller</id>
+            <name>weiller</name>
+            <email>weiller@126.com</email>
+            <url>www.weiller.cn</url>
+        </developer>
+    </developers>
+    
+</project>
